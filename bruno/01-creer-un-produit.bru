@@ -1,0 +1,26 @@
+meta {
+  name: Créer un produit
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/products
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "ordinateur",
+    "category": "informatique",
+    "description": "Un ordinateur"
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.id: isString
+}
+
+
