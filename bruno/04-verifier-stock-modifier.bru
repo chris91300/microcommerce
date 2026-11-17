@@ -1,0 +1,20 @@
+meta {
+  name: Vérifier le stock après la modification
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/inventory/{{productId}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+  res.body: eq 5
+}
+
+docs {
+  On vérifie que le stock est maintenant à 5
+}

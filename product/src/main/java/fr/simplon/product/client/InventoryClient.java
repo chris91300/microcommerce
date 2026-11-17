@@ -12,11 +12,14 @@ public class InventoryClient {
 
     public InventoryClient(RestClient.Builder builder, @Value("${inventory.base-url}") String baseUrl) {
         this.restClient = builder.baseUrl(baseUrl).build();
+        System.out.println("on affiche inventory.base-url");
+        System.out.println(baseUrl);
     }
 
     public void initializeStock(UUID productId) {
         // Inventory utilise une quantité initiale de 0 par défaut. Le POST ne requiert
         // pas de corps.
+
         restClient.post()
                 .uri("/inventory/{productId}", productId)
                 .retrieve()

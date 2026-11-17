@@ -1,0 +1,26 @@
+meta {
+  name: Passer commande non valide
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/order/{{productId}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "quantity": 4
+  }
+}
+
+assert {
+  res.status: eq 400,
+  res.body.quantity: eq 3
+}
+
+docs {
+  Passe une commande avec une quantité de 4. La commande doit retourner une 404 et ne pas modifier le stock
+}
