@@ -1,0 +1,26 @@
+meta {
+  name: Passer commande valide
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/order/{{productId}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "quantity": 2
+  }
+}
+
+assert {
+  res.status: eq 200,
+  res.body.quantity: eq 3
+}
+
+docs {
+  Passe une commande avec une quantité de 2.
+}
